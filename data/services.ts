@@ -1,50 +1,44 @@
 export const services = [
   {
-    title: "Appliance Removal",
+    title: "Land Clearing",
     description:
-      "Contact Jason about removing refrigerators, washers, dryers, stoves, or other bulky appliances and confirm any item-specific requirements.",
-    image: "/pexels-ramonkaphotography-38300321.jpg",
+      "Clear overgrown land so the property is easier to access, use, and prepare for what comes next.",
+    image: "/613795429_122206342154565330_2548263850512502953_n.jpg",
+    position: "center 72%",
   },
   {
-    title: "Home Cleanouts",
+    title: "Brush Clearing",
     description:
-      "Discuss unwanted items in a home, rental, basement, garage, or storage space and confirm the scope directly with Jason.",
-    image: "/pexels-jakobjin-13885592.jpg",
+      "Address dense brush and unwanted growth while keeping the project scope focused on your goals for the property.",
+    image: "/753503103_122234279858565330_1769672164975204912_n.jpg",
+    position: "center 38%",
   },
   {
-    title: "Furniture Removal",
+    title: "Lot Clearing",
     description:
-      "Ask Jason about pickup for couches, tables, cabinets, dressers, or other heavy furniture.",
-    image: "/pexels-rdne-7464712.jpg",
+      "Open up wooded or overgrown lots and create a clearer starting point for the next phase of the property.",
+    image: "/770609169_122236434722565330_5168401742005820719_n.jpg",
+    position: "center 62%",
   },
   {
-    title: "Mattress Removal",
+    title: "Property Cleanup",
     description:
-      "Contact Jason to confirm pickup options for mattresses, box springs, bed frames, or other bulky bedroom items.",
-    image: "/pexels-mikebird-6316243.jpg",
+      "Discuss unwanted vegetation and site debris with Elias to define a practical cleanup plan for the property.",
+    image: "/641639088_122213699834565330_3996149708807636919_n.jpg",
+    position: "center 52%",
   },
   {
-    title: "Yard Waste Removal",
+    title: "Site Preparation",
     description:
-      "Ask whether branches, brush, leaves, or other outdoor debris can be included in a pickup.",
-    image: "/pexels-zeynep-sude-emek-193601188-29359069.jpg",
+      "Prepare an overgrown area for its next use by discussing the land, access, and desired finished condition.",
+    image: "/739420126_122231618246565330_7419188681757054350_n.jpg",
+    position: "center 50%",
   },
   {
-    title: "Junk Hauling",
+    title: "Vegetation Removal",
     description:
-      "From a few unwanted items to a larger cleanup, PML handles the lifting, loading, and hauling.",
-    image: "/pexels-guilherme-pedrosa-2156844062-34406282.jpg",
+      "Remove unwanted growth where a property needs better visibility, access, or a more usable footprint.",
+    image: "/738523346_122231588426565330_1895043176923264203_n.jpg",
+    position: "center 68%",
   },
-  {
-    title: "Construction Debris",
-    description:
-      "Contact Jason to confirm whether non-hazardous remodeling debris, scrap materials, or jobsite clutter fits the current service scope.",
-    image: "/pexels-christafaari-34019842.jpg",
-  },
-  {
-    title: "Commercial Cleanouts",
-    description:
-      "Businesses and property managers can contact Jason to discuss unwanted items in offices, rentals, or storage areas.",
-    image: "/pexels-thomas-lin-2951901-15432186.jpg",
-  },
-];
+] as const;

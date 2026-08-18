@@ -1,211 +1,113 @@
 "use client";
 
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import { navigation, primaryCta, siteConfig } from "@/config/site";
 import LeadModal from "./LeadModal";
-import type { ModalType } from "./LeadModal";
 import useLeadModal from "./useLeadModal";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const {
-    activeModal,
-    closeModal,
-    handleFormSubmit,
-    hasSubmitted,
-    isSubmitting,
-    openModal,
-    submitError,
-  } = useLeadModal();
+  const modal = useLeadModal();
 
   useEffect(() => {
-    if (!isMenuOpen) {
-      return;
-    }
-
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setIsMenuOpen(false);
-      }
+    if (!isMenuOpen) return;
+    const close = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMenuOpen(false);
     };
-
-    window.addEventListener("keydown", handleKeyDown);
-
-    return () => window.removeEventListener("keydown", handleKeyDown);
+    window.addEventListener("keydown", close);
+    return () => window.removeEventListener("keydown", close);
   }, [isMenuOpen]);
 
-  const handleModalOpen = (modal: ModalType) => {
-    setIsMenuOpen(false);
-    openModal(modal);
-  };
-
-  const desktopNavItemClass =
-    "font-heading text-base font-extrabold uppercase tracking-[0.06em] text-[#252525] transition-colors hover:text-(--accent)";
-
   return (
-    <header className="sticky inset-x-0 top-0 z-50 border-b-4 border-(--accent) bg-white text-sm shadow-[0_4px_16px_rgba(0,0,0,0.12)]">
-      <div className="mx-auto hidden h-32 w-full max-w-7xl grid-cols-[1fr_auto_1fr] items-center px-10 lg:grid">
-        <div className="justify-self-start">
-          <p className="font-heading text-lg font-bold leading-tight text-[#202020]">
-            Locally owned in Johnston
-          </p>
-          <p className="mt-2 text-xs leading-5 text-[#4f4c47]">
-            Call, text, or email Jason directly to discuss a pickup.
-          </p>
-        </div>
-
+    <header className="sticky inset-x-0 top-0 z-50 border-b border-white/10 bg-[#151915] text-white shadow-[0_10px_30px_rgba(0,0,0,0.22)]">
+      <div className="mx-auto flex h-18 w-full max-w-(--container-width) items-center gap-3 px-5 sm:h-20 sm:gap-5 sm:px-7 lg:px-10">
         <Link
           href="/"
-          className="flex h-31 w-52 items-center justify-center"
-          aria-label="PML Junk Removal website concept home"
+          aria-label="Precision Land Clearing home"
+          className="relative h-13 w-44 shrink-0 overflow-hidden bg-[#f5f4ee] sm:h-15 sm:w-52 lg:w-55"
+          onClick={() => setIsMenuOpen(false)}
         >
           <Image
-            src="/PML logo.png"
-            alt="PML Junk Removal logo, website concept"
-            width={198}
-            height={200}
-            className="h-full w-full object-contain"
-            sizes="208px"
-            preload
+            src="/precision-logo-cropped.png"
+            alt="Precision Land Clearing"
+            fill
+            className="object-contain px-1.5 py-1"
+            sizes="(max-width: 640px) 176px, 220px"
           />
         </Link>
 
-        <address className="justify-self-end text-right text-xs not-italic leading-5 text-[#4f4c47]">
-          <p className="font-heading text-base font-bold text-[#202020]">
-            Call or text Jason
-          </p>
-          <a href={siteConfig.contact.phoneHref} className="mt-1 block font-heading text-xl font-bold text-[#171717] hover:underline">
-            {siteConfig.contact.phone}
-          </a>
-          <a href={siteConfig.contact.emailHref} className="mt-1 block hover:text-black hover:underline">
-            {siteConfig.contact.email}
-          </a>
-        </address>
-      </div>
+        <nav className="ml-auto hidden items-center gap-5 xl:flex" aria-label="Primary navigation">
+          {navigation.map((item) =>
+            "href" in item ? (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="font-heading text-sm font-bold uppercase tracking-[0.06em] text-white/82 transition hover:text-[#79ad65]"
+              >
+                {item.label}
+              </Link>
+            ) : null,
+          )}
+        </nav>
 
-      <nav className="hidden h-14 border-t border-[#e5e1d9] lg:flex lg:items-center lg:justify-center lg:gap-10">
-        {navigation.map((item) =>
-          "href" in item ? (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={desktopNavItemClass}
-            >
-              {item.label}
-            </Link>
-          ) : (
-            <button
-              key={item.label}
-              type="button"
-              onClick={() => openModal(item.modal)}
-              className={`${desktopNavItemClass} cursor-pointer`}
-            >
-              {item.label}
-            </button>
-          ),
-        )}
-        <Button onClick={() => openModal(primaryCta.modal)}>
-          {primaryCta.label}
-        </Button>
-      </nav>
-
-      <nav className="relative mx-auto grid h-24 w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-4 sm:h-30 sm:px-8 lg:hidden">
-        <Link
-          href="/"
-          className="relative z-10 col-start-2 flex h-22 w-36 items-center justify-center sm:h-28 sm:w-44 lg:h-31 lg:w-52"
-          aria-label="PML Junk Removal website concept home"
-        >
-          <Image
-            src="/PML logo.png"
-            alt="PML Junk Removal logo, website concept"
-            width={198}
-            height={200}
-            className="h-full w-full object-contain"
-            sizes="(max-width: 640px) 144px, (max-width: 1024px) 176px, 208px"
-            preload
-          />
-        </Link>
-
-        <div className="col-start-1 row-start-1 lg:hidden">
-          <button
-            type="button"
-            className="flex size-10 items-center justify-center border-2 border-[#252525] text-[#252525] transition hover:border-(--accent) hover:text-(--accent)"
-            aria-label={
-              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
-            }
-            aria-expanded={isMenuOpen}
-            aria-controls="mobile-navigation-menu"
-            onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+        <div className="ml-auto hidden items-center gap-5 md:flex xl:ml-3">
+          <a
+            href={siteConfig.contact.phoneHref}
+            className="hidden text-right font-heading lg:block"
           >
-            <span className="grid gap-1.5" aria-hidden="true">
-              <span
-                className={`block h-0.5 w-5 rounded-full bg-current transition-transform ${isMenuOpen ? "translate-y-2 rotate-45" : ""}`}
-              />
-              <span
-                className={`block h-0.5 w-5 rounded-full bg-current transition-opacity ${isMenuOpen ? "opacity-0" : ""}`}
-              />
-              <span
-                className={`block h-0.5 w-5 rounded-full bg-current transition-transform ${isMenuOpen ? "-translate-y-2 -rotate-45" : ""}`}
-              />
-            </span>
-          </button>
+            <span className="block text-[0.65rem] font-bold uppercase tracking-[0.18em] text-white/55">Call Elias</span>
+            <span className="text-base font-bold">{siteConfig.contact.phone}</span>
+          </a>
+          <Button onClick={() => modal.openModal(primaryCta.modal)}>
+            Get a Free Estimate
+          </Button>
         </div>
 
-        <div className="col-start-3 row-start-1 ml-auto origin-right scale-80 lg:hidden">
-          <Button href={siteConfig.contact.phoneHref}>Call</Button>
-        </div>
-      </nav>
-
-      <div className="grid grid-cols-3 border-t border-[#d8d8d5] bg-[#111111] text-center text-xs font-bold uppercase tracking-wide text-white lg:hidden">
-        <a href={siteConfig.contact.phoneHref} className="min-w-0 border-r border-white/25 px-2 py-3 transition hover:bg-[#2a2a2a]">Call</a>
-        <a href={siteConfig.contact.smsHref} className="min-w-0 border-r border-white/25 px-2 py-3 transition hover:bg-[#2a2a2a]">Text</a>
-        <button type="button" onClick={() => openModal(primaryCta.modal)} className="min-w-0 cursor-pointer px-1 py-3 text-[0.68rem] transition hover:bg-[#2a2a2a]">Get Estimate</button>
+        <a
+          href={siteConfig.contact.phoneHref}
+          className="ml-auto flex size-11 items-center justify-center border border-white/35 text-sm font-bold uppercase md:hidden"
+          aria-label={`Call Precision Land Clearing at ${siteConfig.contact.phone}`}
+        >
+          Call
+        </a>
+        <button
+          type="button"
+          className="flex size-11 items-center justify-center border border-white/35 xl:hidden"
+          aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={isMenuOpen}
+          aria-controls="mobile-navigation"
+          onClick={() => setIsMenuOpen((open) => !open)}
+        >
+          <span className="grid gap-1.5" aria-hidden="true">
+            <span className={`h-0.5 w-5 bg-current transition ${isMenuOpen ? "translate-y-2 rotate-45" : ""}`} />
+            <span className={`h-0.5 w-5 bg-current transition ${isMenuOpen ? "opacity-0" : ""}`} />
+            <span className={`h-0.5 w-5 bg-current transition ${isMenuOpen ? "-translate-y-2 -rotate-45" : ""}`} />
+          </span>
+        </button>
       </div>
 
       {isMenuOpen && (
-        <div id="mobile-navigation-menu" className="w-full border-t border-[#d8d2c7] bg-white p-2 text-[#252525] shadow-[0_12px_30px_rgba(0,0,0,0.15)] lg:hidden">
-          <div className="grid gap-1">
-            <a href={siteConfig.contact.emailHref} onClick={() => setIsMenuOpen(false)} className="block border-b border-[#e5e0d6] px-4 py-3 font-bold transition hover:bg-[#f3f3f1]">
-              Email {siteConfig.contact.email}
-            </a>
+        <nav id="mobile-navigation" className="border-t border-white/12 bg-[#1b201b] px-5 py-4 xl:hidden" aria-label="Mobile navigation">
+          <div className="mx-auto grid max-w-(--container-width) sm:grid-cols-2">
             {navigation.map((item) =>
               "href" in item ? (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block border-b border-[#e5e0d6] px-4 py-3 font-bold transition hover:bg-[#f3f3f1] hover:text-(--accent)"
-                >
+                <Link key={item.href} href={item.href} onClick={() => setIsMenuOpen(false)} className="border-b border-white/10 py-3 font-heading font-bold uppercase tracking-[0.06em] text-white/85">
                   {item.label}
                 </Link>
-              ) : (
-                <button
-                  key={item.label}
-                  type="button"
-                  onClick={() => handleModalOpen(item.modal)}
-                  className="w-full border-b border-[#e5e0d6] px-4 py-3 text-left font-bold transition hover:bg-[#f3f3f1] hover:text-(--accent)"
-                >
-                  {item.label}
-                </button>
-              ),
+              ) : null,
             )}
+            <a href={siteConfig.contact.smsHref} className="border-b border-white/10 py-3 font-heading font-bold uppercase tracking-[0.06em] text-[#8fc37a]">Text Elias</a>
+            <button type="button" onClick={() => { setIsMenuOpen(false); modal.openModal(primaryCta.modal); }} className="mt-4 min-h-12 bg-(--accent) px-5 py-3 text-left font-heading font-bold uppercase tracking-[0.06em] text-white sm:col-span-2">
+              Get a Free Estimate
+            </button>
           </div>
-        </div>
+        </nav>
       )}
 
-      {activeModal && (
-        <LeadModal
-          activeModal={activeModal}
-          hasSubmitted={hasSubmitted}
-          isSubmitting={isSubmitting}
-          onClose={closeModal}
-          onSubmit={handleFormSubmit}
-          submitError={submitError}
-        />
-      )}
+      {modal.activeModal && <LeadModal activeModal={modal.activeModal} hasSubmitted={modal.hasSubmitted} isSubmitting={modal.isSubmitting} onClose={modal.closeModal} onSubmit={modal.handleFormSubmit} submitError={modal.submitError} />}
     </header>
   );
 };

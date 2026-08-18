@@ -20,11 +20,11 @@ const robotoCondensed = Roboto_Condensed({
 
 export const metadata: Metadata = {
   title: {
-    default: "PML Junk Removal Website Concept | Veriq",
-    template: `%s | PML Junk Removal Website Concept`,
+    default: "Precision Land Clearing | Land Clearing Services",
+    template: `%s | Precision Land Clearing`,
   },
   description:
-    "An unofficial website concept created by Veriq for PML Junk Removal in Johnston, Iowa.",
+    "Precision Land Clearing helps property owners clear and prepare land for what comes next.",
   robots: {
     index: false,
     follow: false,
@@ -39,16 +39,18 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "PML Junk Removal Website Concept",
-    description: "Unofficial demonstration concept created by Veriq.",
-    siteName: "PML Junk Removal Website Concept",
+    title: "Precision Land Clearing | Land Clearing Services",
+    description:
+      "Land clearing and property preparation with direct communication.",
+    siteName: "Precision Land Clearing",
     locale: siteConfig.locale,
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "PML Junk Removal Website Concept",
-    description: "Unofficial demonstration concept created by Veriq.",
+    title: "Precision Land Clearing",
+    description:
+      "Land clearing and property preparation with direct communication.",
   },
 };
 

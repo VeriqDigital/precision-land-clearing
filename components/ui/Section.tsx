@@ -3,11 +3,12 @@ import Container from "./Container";
 type SectionProps = {
   children: React.ReactNode;
   id?: string;
+  className?: string;
 };
 
-const Section = ({ children, id }: SectionProps) => {
+const Section = ({ children, id, className = "" }: SectionProps) => {
   return (
-    <section id={id} className="border-t border-[#dedbd4] bg-white py-20 text-[#202020]">
+    <section id={id} className={`scroll-mt-28 border-t border-(--border) bg-(--surface) py-16 text-(--foreground) md:py-24 ${className}`}>
       <Container>{children}</Container>
     </section>
   );

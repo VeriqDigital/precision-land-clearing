@@ -1,22 +1,24 @@
 import type { ModalType } from "@/components/layout/LeadModal";
 
 export const siteConfig = {
-  name: "PML Junk Removal",
-  shortName: "PML Junk Removal",
-  owner: "Jason Paullin",
+  name: "Precision Land Clearing",
+  shortName: "Precision",
+  owner: "Elias Rosales",
   description:
-    "An unofficial website concept created by Veriq for PML Junk Removal in Johnston, Iowa.",
+    "Land clearing and property preparation with direct communication from first conversation to finished work.",
   locale: "en_US",
   contact: {
-    phone: "(515) 901-3779",
-    phoneHref: "tel:+15159013779",
-    smsHref: "sms:+15159013779",
-    email: "jason.paullin@pml.com",
-    emailHref: "mailto:jason.paullin@pml.com",
-    address: "Johnston, Iowa",
-    serviceArea: "Serving the surrounding Des Moines metro",
-    mapUrl: "https://maps.google.com/?q=Johnston+Iowa",
-    mapEmbedUrl: "https://www.google.com/maps?q=Johnston+Iowa&output=embed",
+    phone: "515-686-7761",
+    phoneHref: "tel:+15156867761",
+    smsHref: "sms:+15156867761",
+    email: "contact@precisionlandclearing.co",
+    emailHref: "mailto:contact@precisionlandclearing.co",
+  },
+  social: {
+    instagram: "https://www.instagram.com/precision_landclearing",
+    facebook:
+      "https://www.facebook.com/p/Precision-Land-Clearing-61566959926993/",
+    tiktok: "https://www.tiktok.com/@precisionlandclearing",
   },
 } as const;
 
@@ -26,19 +28,21 @@ export type NavItem =
 
 export const navigation: NavItem[] = [
   { label: "Services", href: "/#services" },
-  { label: "About", href: "/about" },
+  { label: "Our Work", href: "/#work" },
+  { label: "Why Precision", href: "/#why-precision" },
   { label: "FAQ", href: "/#faq" },
-  { label: "Contact", modal: "contact" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export const footerLinks: NavItem[] = [
-  { label: "Services", href: "/#services" },
+  { label: "Services", href: "/services" },
+  { label: "Our Work", href: "/#work" },
   { label: "About", href: "/about" },
+  { label: "FAQ", href: "/#faq" },
   { label: "Contact", href: "/contact" },
-  { label: "Preview Estimate Form", modal: "service" },
 ];
 
 export const primaryCta = {
-  label: "Preview Estimate Form",
+  label: "Get a Free Estimate",
   modal: "service",
 } as const satisfies { label: string; modal: ModalType };
