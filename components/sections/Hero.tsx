@@ -30,16 +30,27 @@ const Hero = () => {
           </div>
           <h1 className="font-heading text-[clamp(3.4rem,10vw,7.4rem)] font-bold uppercase leading-[0.83] tracking-[-0.04em]">
             Clear the land.
-            <span className="mt-2 block text-[#a7d395]">Build what&apos;s next.</span>
+            <span className="mt-2 block text-[#a7d395]">
+              Build what&apos;s next.
+            </span>
           </h1>
           <p className="mt-7 max-w-xl text-lg leading-8 text-white/80 sm:text-xl">
-            Precision Land Clearing helps property owners clear overgrowth and prepare land for its next use—with direct communication from Elias throughout the project.
+            Precision Land Clearing helps property owners clear overgrowth and
+            prepare land for its next use with direct communication from Elias
+            throughout the project.
           </p>
           <div className="mt-8 flex flex-col gap-3 sm:flex-row">
-            <Button onClick={() => modal.openModal(primaryCta.modal)}>{primaryCta.label}</Button>
-            <Button href={siteConfig.contact.phoneHref} variant="secondary">Call {siteConfig.contact.phone}</Button>
+            <Button onClick={() => modal.openModal(primaryCta.modal)}>
+              {primaryCta.label}
+            </Button>
+            <Button href={siteConfig.contact.phoneHref} variant="secondary">
+              Call {siteConfig.contact.phone}
+            </Button>
           </div>
-          <a href={siteConfig.contact.smsHref} className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-white/78 underline decoration-[#77a965] underline-offset-5 transition hover:text-white">
+          <a
+            href={siteConfig.contact.smsHref}
+            className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-bold uppercase tracking-[0.08em] text-white/78 underline decoration-[#77a965] underline-offset-5 transition hover:text-white"
+          >
             Prefer to text? Message Elias
           </a>
         </div>
@@ -51,7 +62,16 @@ const Hero = () => {
           <span>Real project updates</span>
         </Container>
       </div>
-      {modal.activeModal && <LeadModal activeModal={modal.activeModal} hasSubmitted={modal.hasSubmitted} isSubmitting={modal.isSubmitting} onClose={modal.closeModal} onSubmit={modal.handleFormSubmit} submitError={modal.submitError} />}
+      {modal.activeModal && (
+        <LeadModal
+          activeModal={modal.activeModal}
+          hasSubmitted={modal.hasSubmitted}
+          isSubmitting={modal.isSubmitting}
+          onClose={modal.closeModal}
+          onSubmit={modal.handleFormSubmit}
+          submitError={modal.submitError}
+        />
+      )}
     </section>
   );
 };
